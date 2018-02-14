@@ -3,19 +3,17 @@ This is the README file for SAMPLES-ObjectScript. The end of the file has setup 
 
 Use or operation of this code is subject to acceptance of the license available in the code repository for this code.
 
-SAMPLES-ObjectScript is meant for use with the InterSystems IRIS Data Platform.  This code sample is intended to be used with "<a href="http://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=TCOS_Preface">ObjectScript Tutorial</a>".
+SAMPLES-ObjectScript is meant for use with the InterSystems IRIS Data Platform.  This code sample is intended to be used with the  [ObjectScript Tutorial](http://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=TCOS_Preface).
 
 The ObjectScript folder contains 10 files:
 
-* RightTriangle.cls: a simple example of a class definition with a few methods.
-* Examples.cls: contains all the examples of methods shown throughout the tutorial.
-* Four DataEntry#.cls files (1-4): contain the solutions to exercises 1-4.
-* Three Lookup#.cls files (5-7): contain the completed solutions to exercises 5-7.
-* Person.cls: a simple example of a persistent class.
+* `RightTriangle.cls` is a simple example of a class definition with a few methods.
+* `Examples.cls` contains all the examples of methods shown throughout the tutorial.
+* Four `DataEntry#.cls` files (1-4) contain the solutions to exercises 1-4.
+* Three `Lookup#.cls` files (5-7) contain the completed solutions to exercises 5-7.
+* `Person.cls` a simple example of a persistent class.
 
-*******************************************************************************
-Setup instructions
-*******************************************************************************
+## Setup instructions
 A summary of the steps to run the sample follow:
 
 1. Clone or download the repository.
