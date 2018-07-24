@@ -57,6 +57,7 @@ ClassMethod Help()
 /// exact date of birth lookup
 ClassMethod DOB(intdob as %Date, output id as %Integer)
 {
+    set id = ""
     // is the date of birth in the index?
     if '$data(^PersonI("DOB", intdob) ) {
         write "...no matches"
@@ -79,6 +80,7 @@ ClassMethod DOB(intdob as %Date, output id as %Integer)
 /// lookup phone or area code
 ClassMethod Phone(phone as %String, output id as %Integer)
 {
+    set id = ""
     set count = 0
 	// handle exact match first
 	set id = $get(^PersonI("Phone", phone))
@@ -111,6 +113,7 @@ ClassMethod Phone(phone as %String, output id as %Integer)
 /// lookup names in these forms: Smith; Smith,John; Smith,J; Sm,John; Sm,J
 ClassMethod Name(name as %String, output id as %Integer)
 {
+    set id = ""
     set count = 0
     set last = $piece(name, ",", 1), first = $piece(name, ",", 2)
     // last may be an exact match, so find preceding last name
