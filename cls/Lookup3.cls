@@ -10,7 +10,7 @@ ClassMethod Main()
         elseif (type = "phone") {do ..Phone(search, .id)}
         elseif (type = "name") {do ..Name(search, .id)}
         elseif (type = "dob") {do ..DOB(search, .id)}
-        if (id '= "") {do ..TakeAction(id)}
+        if ((type '= "") && (id '= "")) {do ..TakeAction(id)}
     }
 }
 
