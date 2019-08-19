@@ -23,3 +23,27 @@ To set up the sample:
 5. Click the Browse button, and browse to the folder for the ObjectScript folder within the repository you downloaded.
 6. Select all 10 cls files, and click the checkbox for the Create top-level folder option.
 7. Click Finish.
+
+## Setup instructions for IRIS in Docker container
+
+Make sure you have docker and git installed.
+1. Clone the repository.
+2. Run in a repository folder:
+```
+# docker-compose build
+# docker-compose up -d
+```
+This will run IRIS in docker container with port for Control Panel on 52791 
+and will import all the code into SAMPLES namespace.
+3. Open the terminal to IRIS with:
+```
+# docker-compose exec iris iris session iris
+USER>zn "SAMPLES"
+SAMPLES>w ##class(ObjectScript.Examples).DoubleByVal(2)
+4
+```
+Work with tutorial
+
+4. Integration with VSCode-ObjectScript
+Open the folder of the project in VSCode with installed ObjectScript plugin.
+VSCode will compile ObjectScript classes in IRIS container because of prepared .vscode/settings.json

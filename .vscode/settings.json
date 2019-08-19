@@ -1,0 +1,7 @@
+{
+    "objectscript.conn.version": 3,
+    "objectscript.conn.ns": "SAMPLES",
+    "objectscript.conn.port": 52791,
+    "objectscript.conn.active": true
+
+}
