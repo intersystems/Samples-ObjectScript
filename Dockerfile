@@ -17,7 +17,8 @@ RUN iris start $ISC_PACKAGE_INSTANCENAME quietly EmergencyId=sys,sys && \
             " Do ##class(Security.Users).UnExpireUserPasswords(\"*\")\n" \
             " Do ##class(Security.Users).AddRoles(\"admin\", \"%ALL\")\n" \
             " Do ##class(Security.System).Get(,.p)\n" \
-            " Set p(\"AutheEnabled\")=\$zb(p(\"AutheEnabled\"),16,7)\n" \
+            " // 2**4 = 16; this sets bit 4 to enable OS authentication for the admin user" \
+            " Set p(\"AutheEnabled\")=\$zboolean(p(\"AutheEnabled\"),16,7)\n" \
             " Do ##class(Security.System).Modify(,.p)\n" \
             " Do \$system.OBJ.Load(\"/opt/app/Installer.cls\",\"ck\")\n" \
             " Set sc = ##class(App.Installer).setup(, 3)\n" \
