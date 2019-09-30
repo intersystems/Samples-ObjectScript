@@ -1,13 +1,14 @@
 /// Persistent class for Persons
 Class ObjectScript.Person Extends %Persistent
 {
-Property Name As %String(PATTERN="1U.L1"",""1U.L");
+
+Property Name As %String(PATTERN = "1U.L1"",""1U.L");
 
 Property LastName As %String [ Calculated, SqlComputeCode = {set {LastName}=$p({Name},",",1)}, SqlComputed ];
 
 Property FirstName As %String [ Calculated, SqlComputeCode = {set {FirstName}=$p({Name},",",2)}, SqlComputed ];
 
-Property Phone As %String(PATTERN="3n1""-""3n1""-""4n");
+Property Phone As %String(PATTERN = "3n1""-""3n1""-""4n");
 
 Property DOB As %Date(MAXVAL = "$piece($horolog, "","", 1)");
 
@@ -21,8 +22,7 @@ Index PhoneIndex On Phone [ Unique ];
 Index DOBIndex On DOB;
 
 /// Bitmap index of ID numbers
-Index IDIndex [Extent, Type = bitmap];
-
+Index IDIndex [ Extent, Type = bitmap ];
 
 Storage Default
 {
@@ -45,7 +45,7 @@ Storage Default
 <IdLocation>^ObjectScript.PersonD</IdLocation>
 <IndexLocation>^ObjectScript.PersonI</IndexLocation>
 <StreamLocation>^ObjectScript.PersonS</StreamLocation>
-<Type>%Library.CacheStorage</Type>
+<Type>%Storage.Persistent</Type>
 }
 
 }
