@@ -6,10 +6,11 @@
     "ns": "SAMPLES",
   },
   "objectscript.format": {
-    "commandCase": "word",
-    "functionCase": "word"
+    "commandCase": "lower",
+    "functionCase": "lower"
   },
   "objectscript.export": {
     "folder": "src",
+    "addCategory": false
   }
 }

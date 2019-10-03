@@ -5,167 +5,167 @@ Class ObjectScript.Examples
 /// demo of public and private methods, along with a public variable
 ClassMethod PrivatePublic()
 {
-  Do ..Private()   // call a private method
-  Do ..Public(9)	// call a public method
+  do ..Private()   // call a private method
+  do ..Public(9)	// call a public method
 }
 
 /// a private method with public variable a
 ClassMethod Private() [ Private, PublicList = a ]
 {
-  Write !, "setting a"  set a = 1
-  Write !, "setting b"  set b = 2
-  Write !, "setting c"  set c = 3
-  Write !, "setting d"  set d = 4
+  write !, "setting a"  set a = 1
+  write !, "setting b"  set b = 2
+  write !, "setting c"  set c = 3
+  write !, "setting d"  set d = 4
 }
 
 /// a public method with an argument and a return value
 ClassMethod Public(num As %Numeric) As %String
 {
-  Write !, "my favorite number is ", num
-  Return "This is my return value!!!"
+  write !, "my favorite number is ", num
+  return "This is my return value!!!"
 }
 
 /// demo of passing arguments by value and reference
 ClassMethod PassingArguments(num As %Numeric)
 {
   // pass by value    read !, "Enter a number: ", num
-  Set dblnum = ..DoubleByVal(num)
-  Write !, "By Value: ", num, " doubled is: ", dblnum
+  set dblnum = ..DoubleByVal(num)
+  write !, "By Value: ", num, " doubled is: ", dblnum
 
   // num passed IN and OUT by reference
-  Write !, "By Reference 1: ", num
-  Do ..DoubleByRef1(.num)
-  Write " doubled is: ", num
+  write !, "By Reference 1: ", num
+  do ..DoubleByRef1(.num)
+  write " doubled is: ", num
 
   // num passed IN by value, result passed OUT by reference
-  Do ..DoubleByRef2(num, .result)
-  Write !, "By Reference 2: ", num, " doubled again is: ", result
+  do ..DoubleByRef2(num, .result)
+  write !, "By Reference 2: ", num, " doubled again is: ", result
 }
 
 ClassMethod DoubleByVal(anynumber As %Numeric) As %Numeric
 {
-  Return anynumber * 2
+  return anynumber * 2
 }
 
 ClassMethod DoubleByRef1(ByRef anynumber As %Numeric)
 {
-  Set anynumber = anynumber * 2
+  set anynumber = anynumber * 2
 }
 
 ClassMethod DoubleByRef2(anynumber As %Numeric, Output retnumber As %Numeric)
 {
-  Set retnumber = anynumber * 2
+  set retnumber = anynumber * 2
 }
 
 /// demo of <UNDEFINED> error
 ClassMethod BadMethod()
 {
-  Set a = 1
-  Set b = 2
-  Write c
+  set a = 1
+  set b = 2
+  write c
 }
 
 /// root for my favorite team
 ClassMethod Root()
 {
-  Read "Team: ", t
-  If (t = "") { quit }  // stop execution if no team is specified
-  If (t = "METS") {
-    Write !, "Go METS!" }
-    Else {
-      Write !, "Boo ", t, "!" }
+  read "Team: ", t
+  if (t = "") { quit }  // stop execution if no team is specified
+  if (t = "METS") {
+    write !, "Go METS!" }
+    else {
+      write !, "Boo ", t, "!" }
 }
 
 /// demos of many Ifs 
 ClassMethod If()
 {
-  Set x = 5, y = 0, z = -5
-  If (x = 5) { Write !, "x is equal to 5" } Else { Write !, "false" }
-  If (x = 10) { Write !, "x is equal to 10" } Else { Write !, "false" }
-  If (x < y) { Write !, "x is less than y" } Else { Write !, "false" }
-  If (x > y) { Write !, "x is greater than y" } Else { Write !, "false" }
-  Write !
-  If (##class(%SYSTEM.Util).NumberOfCPUs() > 2) { Write !, "there are more than 2 CPUs" } Else { Write !, "false" }
-  If (x > $ZSqr(64)) { Write !, "x is greater than square root of 64" } Else { Write !, "false" }
-  Write !
-  If (x && y) { Write !, "both x and y are true (non-zero)" } Else { Write !, "false" }
-  If (x && z) { Write !, "both x and z are true (non-zero)" } Else { Write !, "false" }
-  If (x && y && z) { Write !, "x, y, and z are all true (non-zero)" } Else { Write !, "false" }
-  If (x || y || z) { Write !, "at least one of x, y, or z is true (non-zero)" } Else { Write !, "false" }
-  Write !
-  If ((x > y) || (y < z)) { Write !, "either x is greater than y OR y is less than z" } Else { Write !, "false" }
-  If (x > y || y < z) { Write !, "without proper parentheses, this expression is false" } Else { Write !, "false" }
-  If ((x > y) && (z < y)) { Write !, "x is greater than y AND z is less than y" } Else { Write !, "false" }
-  If (x > y && z < y) { Write !, "without proper parentheses, this expression is also false" } Else { Write !, "false" }
-  Write !
-  If 'x { Write !, "x is not true (zero)" } Else { Write !, "false" }
-  If 'y { Write !, "y is not true (zero)" } Else { Write !, "false" }
-  If (x '< y) { Write !, "x is not less than y" } Else { Write !, "false" }
-  If '(x < y) { Write !, "x is not less than y" } Else { Write !, "false" }
+  set x = 5, y = 0, z = -5
+  if (x = 5) { write !, "x is equal to 5" } else { write !, "false" }
+  if (x = 10) { write !, "x is equal to 10" } else { write !, "false" }
+  if (x < y) { write !, "x is less than y" } else { write !, "false" }
+  if (x > y) { write !, "x is greater than y" } else { write !, "false" }
+  write !
+  if (##class(%SYSTEM.Util).NumberOfCPUs() > 2) { write !, "there are more than 2 CPUs" } else { write !, "false" }
+  if (x > $zsqr(64)) { write !, "x is greater than square root of 64" } else { write !, "false" }
+  write !
+  if (x && y) { write !, "both x and y are true (non-zero)" } else { write !, "false" }
+  if (x && z) { write !, "both x and z are true (non-zero)" } else { write !, "false" }
+  if (x && y && z) { write !, "x, y, and z are all true (non-zero)" } else { write !, "false" }
+  if (x || y || z) { write !, "at least one of x, y, or z is true (non-zero)" } else { write !, "false" }
+  write !
+  if ((x > y) || (y < z)) { write !, "either x is greater than y OR y is less than z" } else { write !, "false" }
+  if (x > y || y < z) { write !, "without proper parentheses, this expression is false" } else { write !, "false" }
+  if ((x > y) && (z < y)) { write !, "x is greater than y AND z is less than y" } else { write !, "false" }
+  if (x > y && z < y) { write !, "without proper parentheses, this expression is also false" } else { write !, "false" }
+  write !
+  if 'x { write !, "x is not true (zero)" } else { write !, "false" }
+  if 'y { write !, "y is not true (zero)" } else { write !, "false" }
+  if (x '< y) { write !, "x is not less than y" } else { write !, "false" }
+  if '(x < y) { write !, "x is not less than y" } else { write !, "false" }
 }
 
 ClassMethod Celebrate()
 {
-  Write !, "Yippee! I won!"
+  write !, "Yippee! I won!"
 }
 
 ClassMethod Complain()
 {
-  Write !, "Oh well, I lost."
+  write !, "Oh well, I lost."
 }
 
 /// demos of the For construct
 ClassMethod For()
 {
-  For i = 1:1:8 {
-    Write !, "I ", i, " the sandbox."
+  for i = 1:1:8 {
+    write !, "I ", i, " the sandbox."
   }
-  Write !!
-  For b = "John", "Paul", "George", "Ringo" {
-    Write !, "Was ", b, " the leader? "
-    Read yn
+  write !!
+  for b = "John", "Paul", "George", "Ringo" {
+    write !, "Was ", b, " the leader? "
+    read yn
   }
-  Write !!
-  For i = 1:1 {
-    Read !, "Capital of MA? ", a
-    If (a = "BOSTON") {
-      Write "...did it in ", i, " tries"
-      Quit
+  write !!
+  for i = 1:1 {
+    read !, "Capital of MA? ", a
+    if (a = "BOSTON") {
+      write "...did it in ", i, " tries"
+      quit
     }
   }
-  Write !!
-  For i = 1:1 {
-    Read !, "Capital of TX? ", a
-    Continue:(a '= "AUSTIN")
-    Write "...did it in ", i, " tries"
-    Quit
+  write !!
+  for i = 1:1 {
+    read !, "Capital of TX? ", a
+    continue:(a '= "AUSTIN")
+    write "...did it in ", i, " tries"
+    quit
   }
-  Write !!
-  For {
-    Read !, "Know what? ", wh
-    Quit:(wh = "NO!")
-    Write "   That's what!"
+  write !!
+  for {
+    read !, "Know what? ", wh
+    quit:(wh = "NO!")
+    write "   That's what!"
   }
 }
 
 /// generate Fibonacci sequences
 ClassMethod Fibonacci()
 {
-  Read !, "Generate Fibonacci sequence up to where? ", upto
+  read !, "Generate Fibonacci sequence up to where? ", upto
 
-  Set t1 = 1, t2 = 1, fib = 1
-  Write !
-  Do {
-    Write fib, "  "
-    Set fib = t1 + t2, t1 = t2, t2 = fib
+  set t1 = 1, t2 = 1, fib = 1
+  write !
+  do {
+    write fib, "  "
+    set fib = t1 + t2, t1 = t2, t2 = fib
   }
-  While (fib '> upto)
+  while (fib '> upto)
 
-  Set t1 = 1, t2 = 1, fib = 1
-  Write !
-  While (fib '> upto) {
-    Write fib, "  "
-    Set fib = t1 + t2, t1 = t2, t2 = fib
+  set t1 = 1, t2 = 1, fib = 1
+  write !
+  while (fib '> upto) {
+    write fib, "  "
+    set fib = t1 + t2, t1 = t2, t2 = fib
   }
 }
 
@@ -173,100 +173,100 @@ ClassMethod Fibonacci()
 ClassMethod Exceptions(x As %Numeric)
 {
   // <UNDEFINED> error throws a system exception
-  Try {
-    Write "Hello!", !, xyz
+  try {
+    write "Hello!", !, xyz
   }
-  Catch err {
-    Write !, "Error name: ", ?20, err.Name,
+  catch err {
+    write !, "Error name: ", ?20, err.Name,
 		      !, "Error code: ", ?20, err.Code,
 		      !, "Error location: ", ?20, err.Location,
 		      !, "Additional data: ", ?20, err.Data, !
   }
 
   // <DIVIDE> error throws a system exception
-  Try {
-    Write 1/0
+  try {
+    write 1/0
   }
-  Catch err {
-    Write !, "Error name: ", ?20, err.Name,
+  catch err {
+    write !, "Error name: ", ?20, err.Name,
 		      !, "Error code: ", ?20, err.Code,
 		      !, "Error location: ", ?20, err.Location,
 		      !, "Additional data: ", ?20, err.Data, !
   }
 
   // create a simple custom exception object and throw it
-  Set ex = ##class(%Exception.General).%New()
-  Set ex.Name = "Demo Exception",
-  ex.Code = 100000,
-  ex.Data = "Tutorial Example"
-  Try {
-    Write !, "Hello!", !
-    If (x >= 5) throw ex  // throw the exception
+  set ex = ##class(%Exception.General).%New()
+  set ex.Name = "Demo Exception",
+      ex.Code = 100000,
+      ex.Data = "Tutorial Example"
+  try {
+    write !, "Hello!", !
+    if (x >= 5) throw ex  // throw the exception
   }
-  Catch err {
-    Write !, "Error name: ", ?20, err.Name,
+  catch err {
+    write !, "Error name: ", ?20, err.Name,
 		      !, "Error code: ", ?20, err.Code,
 		      !, "Error location: ", ?20, err.Location,
 		      !, "Additional data: ", ?20, err.Data, !
-    If (x = 5) return  // terminate method
+    if (x = 5) return  // terminate method
   }
-  Write !, "Finished!"
+  write !, "Finished!"
 }
 
 /// examples of JSON
 ClassMethod JSON()
 {
   // create a JSON object
-  Set jo1 = {"PartNum":"678LM", "Price":"7.99", "Quantity":"100" }
+  set jo1 = { "PartNum":"678LM", "Price":"7.99", "Quantity":"100" }
   // create a JSON array, and add it to the object
-  Set ar1 = ["Small","Large"], jo1.Sizes = ar1
+  set ar1 = ["Small","Large"], jo1.Sizes = ar1
   // change a size in the 0-based JSON array
-  Set ar1."0" = "Tiny"
+  set ar1."0" = "Tiny"
   // turn the JSON into a string and display it
-  Set string1 = jo1.%ToJSON()
-  Write !, "First JSON object: ", !, string1
+  set string1 = jo1.%ToJSON()
+  write !, "First JSON object: ", !, string1
 
   // create a text string in JSON format
-  Set string2 = "{""PartNum"":""345JK"", ""Price"":5.99, ""Sizes"":[""Small"", ""Medium"", ""Large""], ""Quantity"":50}"
+  set string2 = "{""PartNum"":""345JK"", ""Price"":5.99, ""Sizes"":[""Small"", ""Medium"", ""Large""], ""Quantity"":50}"
   // create an object from the string
-  Set jo2 = ##class(%DynamicObject).%FromJSON(string2)
+  set jo2 = ##class(%DynamicObject).%FromJSON(string2)
   // display the properties of the object
-  Write !!, "Second JSON Object:"
-  Write !, "Part Number: ", jo2.PartNum, " Price: ", jo2.Price, " Quantity: ", jo2.Quantity
-  Write !, "Sizes"
+  write !!, "Second JSON Object:"
+  write !, "Part Number: ", jo2.PartNum, " Price: ", jo2.Price, " Quantity: ", jo2.Quantity
+  write !, "Sizes"
   // loop through the array using an iterator
-  Set ar2 = jo2.Sizes
-  Set iter = ar2.%GetIterator()
-  While iter.%GetNext(.key , .value ) {
-    Write !, ?5, "Key: ", key, ", Size: ", value
+  set ar2 = jo2.Sizes
+  set iter = ar2.%GetIterator()
+  while iter.%GetNext(.key , .value ) {
+    write !, ?5, "Key: ", key, ", Size: ", value
   }
 
   // change some of the properties
-  Set jo2.Price = "8.99", jo2.Quantity = 75
+  set jo2.Price = "8.99", jo2.Quantity = 75
   // push a new size onto the end of the array
-  Do ar2.%Push("Extra Large")
+  do ar2.%Push("Extra Large")
   // turn the JSON into a string and display it
-  Write !!, "Changed Second JSON Object:"
-  Set newstring = jo2.%ToJSON()
-  Write !, newstring
+  write !!, "Changed Second JSON Object:"
+  set newstring = jo2.%ToJSON()
+  write !, newstring
 }
 
 /// loop through last names of the ^PersonI global, 2 different ways
 ClassMethod SimpleLoop()
 {
-  Write !, "Using argumentless For"
-  Set ln = ""  // initialize to the empty string to make $Order return the first last name
-  For {        // start looping
-    Set ln = $Order(^PersonI("Name", ln))  // use the current last name to get the next
-    Quit:(ln = "")                         // stop looping when ln becomes empty again
-    Write !, ?5, ln
+  write !, "Using argumentless For"
+  set ln = ""  // initialize to the empty string to make $order return the first last name
+  for {        // start looping
+    set ln = $order(^PersonI("Name", ln))  // use the current last name to get the next
+    quit:(ln = "")                         // stop looping when ln becomes empty again
+    write !, ?5, ln
   }
 
-  Write !!, "Using While"
-  Set ln = $Order(^PersonI("Name", ""))  // get the first last name
-  While (ln '= "") {                     // only loop if there is at least one last name
-    Write !, ?5, ln
-    Set ln = $Order(^PersonI("Name", ln))  // use the current last name to get the next
+  write !!, "Using While"
+  set ln = $order(^PersonI("Name", ""))  // get the first last name
+  while (ln '= "") {                     // only loop if there is at least one last name
+    write !, ?5, ln
+    set ln = $order(^PersonI("Name", ln))  // use the current last name to get the next
   }
 }
 
@@ -274,25 +274,25 @@ ClassMethod SimpleLoop()
 ClassMethod NameLoop()
 {
   // loop through last names
-  Set ln = ""
-  For {
-    Set ln = $Order(^PersonI("Name", ln))
-    Quit:(ln = "")
+  set ln = ""
+  for {
+    set ln = $order(^PersonI("Name", ln))
+    quit:(ln = "")
     // for each last name, loop through first names
-    Set fn = ""
-    For {
-      Set fn = $Order(^PersonI("Name", ln, fn))
-      Quit:(fn = "")
+    set fn = ""
+    for {
+      set fn = $order(^PersonI("Name", ln, fn))
+      quit:(fn = "")
       // for each last name and first name, loop through id numbers
-      Set id = ""
-      For {
-        Set id = $Order(^PersonI("Name", ln, fn, id))
-        Quit:(id = "")
+      set id = ""
+      for {
+        set id = $order(^PersonI("Name", ln, fn, id))
+        quit:(id = "")
         // once you have an id number, get the data and display it
-        Set rec = ^PersonD(id)
-        Write !, $List(rec, 1),
-                      ?15, $List(rec, 2),
-                      ?30, $ZDate($List(rec, 3), 2)
+        set rec = ^PersonD(id)
+        write !, $list(rec, 1),
+                      ?15, $list(rec, 2),
+                      ?30, $zdate($list(rec, 3), 2)
       }
     }
   }
@@ -301,46 +301,46 @@ ClassMethod NameLoop()
 /// loop through last names that FOLLOW a substring (including the substring)
 ClassMethod FocusedLoopStart()
 {
-  Read "Search for: ",substring
+  read "Search for: ",substring
   // find the last name just BEFORE the substring and then start looping
-  Set ln = $Order(^PersonI("Name", substring), -1)
-  For {
-    Set ln = $Order(^PersonI("Name", ln))
-    Quit:(ln = "")
-    Write !, ln
+  set ln = $order(^PersonI("Name", substring), -1)
+  for {
+    set ln = $order(^PersonI("Name", ln))
+    quit:(ln = "")
+    write !, ln
   }
 }
 
 /// loop through last names that MATCH substring
 ClassMethod FocusedLoopStartEnd()
 {
-  Read "Search for: ",substring
+  read "Search for: ",substring
   // find the last name just BEFORE the substring and then start looping
-  Set ln = $Order(^PersonI("Name", substring), -1)
-  For {
-    Set ln = $Order(^PersonI("Name", ln))
+  set ln = $order(^PersonI("Name", substring), -1)
+  for {
+    set ln = $order(^PersonI("Name", ln))
     // quit if no match or at end
-    Quit:($Extract(ln, 1, $Length(substring)) '= substring)
-    Write !, ln
+    quit:($extract(ln, 1, $length(substring)) '= substring)
+    write !, ln
   }
 }
 
 /// examples of conversion methods
 ClassMethod Conversions()
 {
-  Write !, "abcde becomes: ", $Translate("abcde", "ad", "yz")  // translate a->y, and d->z
-  Write !, "abcde becomes: ", $Translate("abcde", "ad", "zz")  // translate a->z, and d->z
-  Write !, "abcde becomes: ", $Translate("abcde", "ad", "z")   // translate a->z, and d->nothing
-  Write !, "abcdebcbc becomes: ", $Translate("abcdebcbc", "abc", "yz")  // translate a->y, b->z, and c->nothing
-  Write !, "abcdebcbc becomes: ", $Replace("abcdebcbc", "abc", "yz")    // replace abc->yz
+  write !, "abcde becomes: ", $translate("abcde", "ad", "yz")  // translate a->y, and d->z
+  write !, "abcde becomes: ", $translate("abcde", "ad", "zz")  // translate a->z, and d->z
+  write !, "abcde becomes: ", $translate("abcde", "ad", "z")   // translate a->z, and d->nothing
+  write !, "abcdebcbc becomes: ", $translate("abcdebcbc", "abc", "yz")  // translate a->y, b->z, and c->nothing
+  write !, "abcdebcbc becomes: ", $replace("abcdebcbc", "abc", "yz")    // replace abc->yz
 
-  Read !, "String to translate: ", x
-  Set lower = "abcdefghijklmnopqrstuvwxyz"
-  Set upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  Write !, "Using $Translate: ", $Translate(x, lower,  upper)
-  Write !, "Using $ZConvert: ", $ZConvert(x, "U")
-  Write !, "Using $ZConvert for capitalizing words: ", $ZConvert(x, "W")
-  Write !, "Using $ZStrip to remove whitespace: ", $ZStrip(x, "*W")
+  read !, "String to translate: ", x
+  set lower = "abcdefghijklmnopqrstuvwxyz"
+  set upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  write !, "Using $translate: ", $translate(x, lower,  upper)
+  write !, "Using $zconvert: ", $zconvert(x, "U")
+  write !, "Using $zconvert for capitalizing words: ", $zconvert(x, "W")
+  write !, "Using $zstrip to remove whitespace: ", $zstrip(x, "*W")
 }
 
 }

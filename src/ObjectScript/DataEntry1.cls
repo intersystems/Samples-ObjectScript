@@ -3,15 +3,15 @@ Class ObjectScript.DataEntry1
 
 ClassMethod Main()
 {
-  Read !, "Name: " , name
-  If name = "" { quit }  // user entered nothing
-  Read !, "Phone: ", phone
-  Read !, "DOB: ", dob
+  read !, "Name: " , name
+  if name = "" { quit }  // user entered nothing
+  read !, "Phone: ", phone
+  read !, "DOB: ", dob
 
   // display the data
-  Write !!!, "Name:", ?20, name
-  Write !, "Phone:", ?20, phone
-  Write !, "DOB:", ?20, dob
+  write !!!, "Name:", ?20, name
+  write !, "Phone:", ?20, phone
+  write !, "DOB:", ?20, dob
 }
 
 }
