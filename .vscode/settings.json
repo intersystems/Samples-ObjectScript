@@ -1,7 +1,16 @@
 {
-    "objectscript.conn.version": 3,
-    "objectscript.conn.ns": "SAMPLES",
-    "objectscript.conn.port": 52791,
-    "objectscript.conn.active": true
-
+  "objectscript.conn": {
+    "active": true,
+    "host": "localhost",
+    "port": 52791,
+    "ns": "SAMPLES",
+  },
+  "objectscript.format": {
+    "commandCase": "lower",
+    "functionCase": "lower"
+  },
+  "objectscript.export": {
+    "folder": "src",
+    "addCategory": false
+  }
 }

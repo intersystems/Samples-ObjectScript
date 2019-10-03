@@ -1,16 +1,17 @@
-ARG IMAGE=intersystems/iris:2019.1.0S.111.0
-ARG IMAGE=store/intersystems/iris:2019.1.0.511.0-community
-ARG IMAGE=store/intersystems/iris:2019.2.0.107.0-community
-#ARG IMAGE=intersystems/iris:2019.3.0.302.0
+ARG IMAGE=store/intersystems/iris-community:2019.2.0.107.0
+ARG IMAGE=store/intersystems/iris-community:2019.3.0.309.0
 FROM $IMAGE
+
+USER root
+
+RUN mkdir /opt/app && chown irisowner:irisowner /opt/app
+
+USER irisowner
 
 WORKDIR /opt/app
 
 COPY ./Installer.cls ./
-COPY ./cls ./src/
-
-#USER root
-
+COPY ./src ./src/
 
 RUN iris start $ISC_PACKAGE_INSTANCENAME quietly EmergencyId=sys,sys && \
     /bin/echo -e "sys\nsys\n" \
@@ -28,5 +29,4 @@ RUN iris start $ISC_PACKAGE_INSTANCENAME quietly EmergencyId=sys,sys && \
     /bin/echo -e "sys\nsys\n" \
     | iris stop $ISC_PACKAGE_INSTANCENAME quietly
 
-#USER irisowner
 CMD [ "-l", "/usr/irissys/mgr/messages.log" ]
