@@ -1,10 +1,14 @@
-version: '2.4'
+version: '3.6'
 services:
   iris:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     restart: always
-    ports:
-      - 52791:52773
+    ports: 
+      - 51773
+      - 52773
+      - 53773
     volumes:
       - ~/iris.key:/usr/irissys/mgr/iris.key
-      - ./:/iris/app
+      - ./:/irisdev/app

@@ -1,16 +1,18 @@
 {
-  "objectscript.conn": {
-    "active": true,
-    "host": "localhost",
-    "port": 52791,
-    "ns": "SAMPLES",
-  },
-  "objectscript.format": {
-    "commandCase": "lower",
-    "functionCase": "lower"
-  },
-  "objectscript.export": {
-    "folder": "src",
-    "addCategory": false
-  }
+    "files.associations": {
+    
+        "Dockerfile*": "dockerfile",
+      },
+    "objectscript.conn" :{
+      "ns": "SAMPLES",
+      "active": true,
+      "docker-compose": {
+        "service": "iris",
+        "internalPort": 52773
+      }
+    },
+    "objectscript.conn.active": true,
+    
+  
+
 }
