@@ -1,32 +1,25 @@
-ARG IMAGE=store/intersystems/iris-community:2019.2.0.107.0
+ARG IMAGE=intersystems/iris:2019.1.0S.111.0
+ARG IMAGE=store/intersystems/irishealth:2019.3.0.308.0-community
 ARG IMAGE=store/intersystems/iris-community:2019.3.0.309.0
+ARG IMAGE=store/intersystems/iris-community:2019.4.0.379.0
 FROM $IMAGE
 
 USER root
 
-RUN mkdir /opt/app && chown irisowner:irisowner /opt/app
+WORKDIR /opt/irisapp
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 
 USER irisowner
 
-WORKDIR /opt/app
+COPY  Installer.cls .
+COPY  src src
+COPY irissession.sh /
+SHELL ["/irissession.sh"]
 
-COPY ./Installer.cls ./
-COPY ./src ./src/
+RUN \
+  do $SYSTEM.OBJ.Load("Installer.cls", "ck") \
+  set sc = ##class(App.Installer).setup() 
 
-RUN iris start $ISC_PACKAGE_INSTANCENAME quietly EmergencyId=sys,sys && \
-    /bin/echo -e "sys\nsys\n" \
-            " Do ##class(Security.Users).UnExpireUserPasswords(\"*\")\n" \
-            " Do ##class(Security.Users).AddRoles(\"admin\", \"%ALL\")\n" \
-            " Do ##class(Security.System).Get(,.p)\n" \
-            " // 2**4 = 16; this sets bit 4 to enable OS authentication for the admin user" \
-            " Set p(\"AutheEnabled\")=\$zboolean(p(\"AutheEnabled\"),16,7)\n" \
-            " Do ##class(Security.System).Modify(,.p)\n" \
-            " Do \$system.OBJ.Load(\"/opt/app/Installer.cls\",\"ck\")\n" \
-            " Set sc = ##class(App.Installer).setup(, 3)\n" \
-            " If 'sc do \$zu(4, \$JOB, 1)\n" \
-            " halt" \
-    | iris session $ISC_PACKAGE_INSTANCENAME && \
-    /bin/echo -e "sys\nsys\n" \
-    | iris stop $ISC_PACKAGE_INSTANCENAME quietly
-
+# bringing the standard shell back
+SHELL ["/bin/bash", "-c"]
 CMD [ "-l", "/usr/irissys/mgr/messages.log" ]
