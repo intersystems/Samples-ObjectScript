@@ -18,11 +18,9 @@ To set up the sample:
 
 1. Clone or [download](http://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=asamples) the repository.
 2. If you have not yet created a namespace in InterSystems IRIS, follow the [detailed instructions](http://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GSA_config_namespace_create) to do so.
-3. Using Atelier, create a project that's connected to InterSystems IRIS.
-4. Right-click your project icon, and click Import. Then select General > File System.
-5. Click the Browse button, and browse to the folder for the ObjectScript folder within the repository you downloaded.
-6. Select all 10 cls files, and click the checkbox for the Create top-level folder option.
-7. Click Finish.
+3. Using VS Code - ObjectScript, create a workspace that's connected to your instance of InterSystems IRIS. The main workspace folder can have any name, and it should contain an "src" subfolder.
+4. Copy the ObjectScript folder (and its contents) from the sample repository into the src folder. Now you can open any of the class files in VS Code.
+5. Right-click each of the files and choose "Import and Compile".
 
 ## Setup instructions for IRIS in Docker container
 
