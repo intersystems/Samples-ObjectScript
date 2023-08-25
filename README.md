@@ -9,7 +9,7 @@ The `ObjectScript` folder contains 10 files:
 
 * `RightTriangle.cls` is a simple example of a class definition with a few methods.
 * `Examples.cls` contains all the examples of methods shown throughout the tutorial.
-* Four `DataEntry#.cls` files (1-4) contain the solutions to exercises 1-4.
+* Four `DataEntry#.cls` files (1-4) contain the completed solutions to exercises 1-4.
 * Three `Lookup#.cls` files (5-7) contain the completed solutions to exercises 5-7.
 * `Person.cls` a simple example of a persistent class.
 
