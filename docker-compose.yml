@@ -1,14 +1,16 @@
-version: '3.6'
+version: '3.6' 
 services:
   iris:
     build: 
       context: .
       dockerfile: Dockerfile
     restart: always
+    command: --ISCAgent false
     ports: 
-      - 51773
-      - 52773
+#      - 51771
+      - 1972:1972
+      - 52773:52773
       - 53773
     volumes:
-      - ~/iris.key:/usr/irissys/mgr/iris.key
+#      - ~/iris.key:/usr/irissys/mgr/iris.key
       - ./:/irisdev/app
